@@ -1,0 +1,379 @@
+Country,Year,Carbon_Intensity_kgCO2_per_m2
+Austria,2024,100.0
+Austria,2025,96.54
+Austria,2026,93.08
+Austria,2027,89.62
+Austria,2028,86.15
+Austria,2029,82.69
+Austria,2030,79.23
+Austria,2031,75.77
+Austria,2032,72.31
+Austria,2033,68.85
+Austria,2034,65.38
+Austria,2035,61.92
+Austria,2036,58.46
+Austria,2037,55.0
+Austria,2038,51.54
+Austria,2039,48.08
+Austria,2040,44.62
+Austria,2041,41.15
+Austria,2042,37.69
+Austria,2043,34.23
+Austria,2044,30.77
+Austria,2045,27.31
+Austria,2046,23.85
+Austria,2047,20.38
+Austria,2048,16.92
+Austria,2049,13.46
+Austria,2050,10.0
+Belgium,2024,100.0
+Belgium,2025,96.54
+Belgium,2026,93.08
+Belgium,2027,89.62
+Belgium,2028,86.15
+Belgium,2029,82.69
+Belgium,2030,79.23
+Belgium,2031,75.77
+Belgium,2032,72.31
+Belgium,2033,68.85
+Belgium,2034,65.38
+Belgium,2035,61.92
+Belgium,2036,58.46
+Belgium,2037,55.0
+Belgium,2038,51.54
+Belgium,2039,48.08
+Belgium,2040,44.62
+Belgium,2041,41.15
+Belgium,2042,37.69
+Belgium,2043,34.23
+Belgium,2044,30.77
+Belgium,2045,27.31
+Belgium,2046,23.85
+Belgium,2047,20.38
+Belgium,2048,16.92
+Belgium,2049,13.46
+Belgium,2050,10.0
+Czech Republic,2024,100.0
+Czech Republic,2025,96.54
+Czech Republic,2026,93.08
+Czech Republic,2027,89.62
+Czech Republic,2028,86.15
+Czech Republic,2029,82.69
+Czech Republic,2030,79.23
+Czech Republic,2031,75.77
+Czech Republic,2032,72.31
+Czech Republic,2033,68.85
+Czech Republic,2034,65.38
+Czech Republic,2035,61.92
+Czech Republic,2036,58.46
+Czech Republic,2037,55.0
+Czech Republic,2038,51.54
+Czech Republic,2039,48.08
+Czech Republic,2040,44.62
+Czech Republic,2041,41.15
+Czech Republic,2042,37.69
+Czech Republic,2043,34.23
+Czech Republic,2044,30.77
+Czech Republic,2045,27.31
+Czech Republic,2046,23.85
+Czech Republic,2047,20.38
+Czech Republic,2048,16.92
+Czech Republic,2049,13.46
+Czech Republic,2050,10.0
+France,2024,100.0
+France,2025,96.54
+France,2026,93.08
+France,2027,89.62
+France,2028,86.15
+France,2029,82.69
+France,2030,79.23
+France,2031,75.77
+France,2032,72.31
+France,2033,68.85
+France,2034,65.38
+France,2035,61.92
+France,2036,58.46
+France,2037,55.0
+France,2038,51.54
+France,2039,48.08
+France,2040,44.62
+France,2041,41.15
+France,2042,37.69
+France,2043,34.23
+France,2044,30.77
+France,2045,27.31
+France,2046,23.85
+France,2047,20.38
+France,2048,16.92
+France,2049,13.46
+France,2050,10.0
+Germany,2024,100.0
+Germany,2025,96.54
+Germany,2026,93.08
+Germany,2027,89.62
+Germany,2028,86.15
+Germany,2029,82.69
+Germany,2030,79.23
+Germany,2031,75.77
+Germany,2032,72.31
+Germany,2033,68.85
+Germany,2034,65.38
+Germany,2035,61.92
+Germany,2036,58.46
+Germany,2037,55.0
+Germany,2038,51.54
+Germany,2039,48.08
+Germany,2040,44.62
+Germany,2041,41.15
+Germany,2042,37.69
+Germany,2043,34.23
+Germany,2044,30.77
+Germany,2045,27.31
+Germany,2046,23.85
+Germany,2047,20.38
+Germany,2048,16.92
+Germany,2049,13.46
+Germany,2050,10.0
+Italy,2024,100.0
+Italy,2025,96.54
+Italy,2026,93.08
+Italy,2027,89.62
+Italy,2028,86.15
+Italy,2029,82.69
+Italy,2030,79.23
+Italy,2031,75.77
+Italy,2032,72.31
+Italy,2033,68.85
+Italy,2034,65.38
+Italy,2035,61.92
+Italy,2036,58.46
+Italy,2037,55.0
+Italy,2038,51.54
+Italy,2039,48.08
+Italy,2040,44.62
+Italy,2041,41.15
+Italy,2042,37.69
+Italy,2043,34.23
+Italy,2044,30.77
+Italy,2045,27.31
+Italy,2046,23.85
+Italy,2047,20.38
+Italy,2048,16.92
+Italy,2049,13.46
+Italy,2050,10.0
+Netherlands,2024,100.0
+Netherlands,2025,96.54
+Netherlands,2026,93.08
+Netherlands,2027,89.62
+Netherlands,2028,86.15
+Netherlands,2029,82.69
+Netherlands,2030,79.23
+Netherlands,2031,75.77
+Netherlands,2032,72.31
+Netherlands,2033,68.85
+Netherlands,2034,65.38
+Netherlands,2035,61.92
+Netherlands,2036,58.46
+Netherlands,2037,55.0
+Netherlands,2038,51.54
+Netherlands,2039,48.08
+Netherlands,2040,44.62
+Netherlands,2041,41.15
+Netherlands,2042,37.69
+Netherlands,2043,34.23
+Netherlands,2044,30.77
+Netherlands,2045,27.31
+Netherlands,2046,23.85
+Netherlands,2047,20.38
+Netherlands,2048,16.92
+Netherlands,2049,13.46
+Netherlands,2050,10.0
+Poland,2024,100.0
+Poland,2025,96.54
+Poland,2026,93.08
+Poland,2027,89.62
+Poland,2028,86.15
+Poland,2029,82.69
+Poland,2030,79.23
+Poland,2031,75.77
+Poland,2032,72.31
+Poland,2033,68.85
+Poland,2034,65.38
+Poland,2035,61.92
+Poland,2036,58.46
+Poland,2037,55.0
+Poland,2038,51.54
+Poland,2039,48.08
+Poland,2040,44.62
+Poland,2041,41.15
+Poland,2042,37.69
+Poland,2043,34.23
+Poland,2044,30.77
+Poland,2045,27.31
+Poland,2046,23.85
+Poland,2047,20.38
+Poland,2048,16.92
+Poland,2049,13.46
+Poland,2050,10.0
+Portugal,2024,100.0
+Portugal,2025,96.54
+Portugal,2026,93.08
+Portugal,2027,89.62
+Portugal,2028,86.15
+Portugal,2029,82.69
+Portugal,2030,79.23
+Portugal,2031,75.77
+Portugal,2032,72.31
+Portugal,2033,68.85
+Portugal,2034,65.38
+Portugal,2035,61.92
+Portugal,2036,58.46
+Portugal,2037,55.0
+Portugal,2038,51.54
+Portugal,2039,48.08
+Portugal,2040,44.62
+Portugal,2041,41.15
+Portugal,2042,37.69
+Portugal,2043,34.23
+Portugal,2044,30.77
+Portugal,2045,27.31
+Portugal,2046,23.85
+Portugal,2047,20.38
+Portugal,2048,16.92
+Portugal,2049,13.46
+Portugal,2050,10.0
+Spain,2024,100.0
+Spain,2025,96.54
+Spain,2026,93.08
+Spain,2027,89.62
+Spain,2028,86.15
+Spain,2029,82.69
+Spain,2030,79.23
+Spain,2031,75.77
+Spain,2032,72.31
+Spain,2033,68.85
+Spain,2034,65.38
+Spain,2035,61.92
+Spain,2036,58.46
+Spain,2037,55.0
+Spain,2038,51.54
+Spain,2039,48.08
+Spain,2040,44.62
+Spain,2041,41.15
+Spain,2042,37.69
+Spain,2043,34.23
+Spain,2044,30.77
+Spain,2045,27.31
+Spain,2046,23.85
+Spain,2047,20.38
+Spain,2048,16.92
+Spain,2049,13.46
+Spain,2050,10.0
+Sweden,2024,100.0
+Sweden,2025,96.54
+Sweden,2026,93.08
+Sweden,2027,89.62
+Sweden,2028,86.15
+Sweden,2029,82.69
+Sweden,2030,79.23
+Sweden,2031,75.77
+Sweden,2032,72.31
+Sweden,2033,68.85
+Sweden,2034,65.38
+Sweden,2035,61.92
+Sweden,2036,58.46
+Sweden,2037,55.0
+Sweden,2038,51.54
+Sweden,2039,48.08
+Sweden,2040,44.62
+Sweden,2041,41.15
+Sweden,2042,37.69
+Sweden,2043,34.23
+Sweden,2044,30.77
+Sweden,2045,27.31
+Sweden,2046,23.85
+Sweden,2047,20.38
+Sweden,2048,16.92
+Sweden,2049,13.46
+Sweden,2050,10.0
+United Kingdom,2024,100.0
+United Kingdom,2025,96.54
+United Kingdom,2026,93.08
+United Kingdom,2027,89.62
+United Kingdom,2028,86.15
+United Kingdom,2029,82.69
+United Kingdom,2030,79.23
+United Kingdom,2031,75.77
+United Kingdom,2032,72.31
+United Kingdom,2033,68.85
+United Kingdom,2034,65.38
+United Kingdom,2035,61.92
+United Kingdom,2036,58.46
+United Kingdom,2037,55.0
+United Kingdom,2038,51.54
+United Kingdom,2039,48.08
+United Kingdom,2040,44.62
+United Kingdom,2041,41.15
+United Kingdom,2042,37.69
+United Kingdom,2043,34.23
+United Kingdom,2044,30.77
+United Kingdom,2045,27.31
+United Kingdom,2046,23.85
+United Kingdom,2047,20.38
+United Kingdom,2048,16.92
+United Kingdom,2049,13.46
+United Kingdom,2050,10.0
+United States,2024,100.0
+United States,2025,96.54
+United States,2026,93.08
+United States,2027,89.62
+United States,2028,86.15
+United States,2029,82.69
+United States,2030,79.23
+United States,2031,75.77
+United States,2032,72.31
+United States,2033,68.85
+United States,2034,65.38
+United States,2035,61.92
+United States,2036,58.46
+United States,2037,55.0
+United States,2038,51.54
+United States,2039,48.08
+United States,2040,44.62
+United States,2041,41.15
+United States,2042,37.69
+United States,2043,34.23
+United States,2044,30.77
+United States,2045,27.31
+United States,2046,23.85
+United States,2047,20.38
+United States,2048,16.92
+United States,2049,13.46
+United States,2050,10.0
+Japan,2024,100.0
+Japan,2025,96.54
+Japan,2026,93.08
+Japan,2027,89.62
+Japan,2028,86.15
+Japan,2029,82.69
+Japan,2030,79.23
+Japan,2031,75.77
+Japan,2032,72.31
+Japan,2033,68.85
+Japan,2034,65.38
+Japan,2035,61.92
+Japan,2036,58.46
+Japan,2037,55.0
+Japan,2038,51.54
+Japan,2039,48.08
+Japan,2040,44.62
+Japan,2041,41.15
+Japan,2042,37.69
+Japan,2043,34.23
+Japan,2044,30.77
+Japan,2045,27.31
+Japan,2046,23.85
+Japan,2047,20.38
+Japan,2048,16.92
+Japan,2049,13.46
+Japan,2050,10.0

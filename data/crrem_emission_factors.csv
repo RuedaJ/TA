@@ -1,0 +1,5 @@
+country_code,asset_class,baseline_year,baseline_emission_intensity_kgco2m2
+DE,Office,2020,85
+DE,Retail,2020,90
+UK,Office,2020,75
+UK,Retail,2020,80

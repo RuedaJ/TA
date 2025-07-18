@@ -1,0 +1,9 @@
+Country,Energy_Source,Fuel_Subtype,GWP_Unit,Factor_Value,Source,Year,Scenario
+Germany,Electricity,Grid Mix,kgCO2e/kWh,0.366,CRREM/IEA,2023,Baseline
+United States,Electricity,Grid Mix,kgCO2e/kWh,0.379,CRREM/IEA,2023,Baseline
+France,Electricity,Grid Mix,kgCO2e/kWh,0.051,CRREM/IEA,2023,Baseline
+Germany,District Heating,Typical Mix,kgCO2e/kWh,0.24,Euroheat,2023,Baseline
+Sweden,District Heating,Typical Mix,kgCO2e/kWh,0.04,Euroheat,2023,Baseline
+Global,Onsite Fuel,Natural Gas,kgCO2e/kWh,0.202,IPCC 2006,2023,Default
+Global,Onsite Fuel,Fuel Oil,kgCO2e/kWh,0.267,IPCC 2006,2023,Default
+Global,Onsite Fuel,Coal,kgCO2e/kWh,0.341,IPCC 2006,2023,Default

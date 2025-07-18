@@ -1,0 +1,5 @@
+fuel_type,country_code,year,conversion_factor_kgco2_per_kwh
+electricity,DE,2020,0.4
+gas,DE,2020,0.2
+electricity,UK,2020,0.35
+gas,UK,2020,0.25

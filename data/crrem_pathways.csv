@@ -1,0 +1,6 @@
+region_code,year,asset_class,target_carbon_intensity_kgco2m2
+EU,2020,Office,80
+EU,2025,Office,60
+EU,2030,Office,40
+UK,2025,Retail,70
+UK,2030,Retail,50

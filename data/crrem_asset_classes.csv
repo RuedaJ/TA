@@ -1,0 +1,4 @@
+asset_class,description,typical_floor_area_ratio,occupancy_type,intensity_unit
+Office,Commercial office space,1.0,tenanted,kgCO2/m²/year
+Retail,Retail and shopping centers,1.2,tenanted,kgCO2/m²/year
+Residential,Multi-family or residential,0.8,owner-occupied,kgCO2/m²/year
