@@ -1,1 +1,4 @@
-
+asset_class,country_code,carbon_intensity,floor_area,capex
+Office,DE,85,1000,250000
+Retail,FR,95,1200,280000
+Logistics,NL,70,800,180000

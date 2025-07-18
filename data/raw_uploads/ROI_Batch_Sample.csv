@@ -1,0 +1,4 @@
+capex,kwh_before,kwh_after,country_code,fuel_type,year
+50000,100000,60000,DE,electricity,2025
+75000,120000,80000,FR,gas,2025
+30000,90000,50000,IT,electricity,2026
