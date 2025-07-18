@@ -62,6 +62,21 @@ if submitted:
         pathway_row = crrem_pathways.query("asset_class == @asset_class and region_code == @country and year == @year").iloc[0]
         target_intensity = pathway_row["target_carbon_intensity_kgco2m2"]
 
+        intensity_after = kwh_after / floor_area * tariff_row["Carbon Factor"]
+        stranded = intensity_after > target_intensity
+
+        st.subheader("📌 CRREM Alignment")
+        if stranded:
+            st.error(f"🚨 Post-retrofit intensity ({intensity_after:.1f} kgCO₂/m²) EXCEEDS CRREM target ({target_intensity:.1f}).")
+        else:
+            st.success(f"✅ Post-retrofit intensity ({intensity_after:.1f} kgCO₂/m²) is BELOW CRREM target ({target_intensity:.1f}).")
+    except Exception as e:
+        st.warning(f"⚠️ Could not compare to CRREM pathways: {e}")
+
+        crrem_pathways = pd.read_csv("data/crrem_pathways.csv")
+        pathway_row = crrem_pathways.query("asset_class == @asset_class and region_code == @country and year == @year").iloc[0]
+        target_intensity = pathway_row["target_carbon_intensity_kgco2m2"]
+
         intensity_after = kwh_after / floor_area * tariff_row["Carbon Factor"]  # Estimate kgCO₂/m²
         stranded = intensity_after > target_intensity
 
