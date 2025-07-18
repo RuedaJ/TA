@@ -1,1 +1,8 @@
-
+# Default file paths for toolkit components
+paths:
+  crrem_reference: "data/reference/crrem_country_reference.csv"
+  archetypes: "data/predefined/Building_Archetypes_CRREM_Compatible.xlsx"
+  systems: "data/predefined/Technical_Systems_CRREM_Compatible.xlsx"
+  retrofit_costs: "data/predefined/Retrofit_Costs_CRREM_Compatible.xlsx"
+  decarbonization_schedules: "data/predefined/Decarbonization_Schedules_CRREM_Compatible.csv"
+  energy_prices: "data/predefined/Energy_Prices_CRREM_Compatible.csv"

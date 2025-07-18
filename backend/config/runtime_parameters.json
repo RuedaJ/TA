@@ -1,0 +1,7 @@
+{
+  "enable_logging": true,
+  "currency": "EUR",
+  "base_year": 2023,
+  "discount_rate": 0.05,
+  "risk_premium_default": 0.02
+}
