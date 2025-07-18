@@ -1,69 +1,68 @@
 
 import streamlit as st
 import pandas as pd
-import plotly.graph_objects as go
-import tempfile
-from backend.utils.file_validator import validate_csv
 
-st.set_page_config(layout="wide")
-st.title("📆 Net Zero Transition Plan")
+# Load mapping and uplift data
+hvac_map = pd.read_excel("data/Technical_Systems_CRREM_Compatible.xlsx")
+esg_val = pd.read_excel("data/ESG_Valuation_Impacts_CRREM_Compatible.xlsx")
 
-st.markdown("Upload your validated asset CSV to plan retrofits and visualize your decarbonization pathway.")
+st.set_page_config(page_title="📆 Transition Plan (HVAC & EPC)", layout="wide")
+st.title("📆 ESG Transition Plan – HVAC + Valuation Impact")
 
-uploaded_file = st.file_uploader("Upload validated asset CSV", type=["csv"])
+with st.form("transition_inputs"):
+    col1, col2, col3 = st.columns(3)
+    asset_class = col1.selectbox("Asset Class", hvac_map["Asset Class"].unique())
+    country_code = col2.selectbox("Country", esg_val["Country"].unique())
+    current_system = col3.selectbox("Current HVAC System", hvac_map["Current System"].unique())
+    new_system = st.selectbox("New HVAC System", hvac_map["New System"].unique())
 
-if uploaded_file:
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
-        tmp.write(uploaded_file.read())
-        tmp_path = tmp.name
+    current_epc = st.selectbox("Current EPC Rating", ["G", "F", "E", "D", "C", "B", "A"])
+    new_epc = st.selectbox("Target EPC Rating", ["G", "F", "E", "D", "C", "B", "A"], index=5)
 
-    result = validate_csv(tmp_path, "assets")
+    asset_value = st.number_input("Current Asset Value (€)", min_value=1000000, value=25000000)
+    retrofit_year = st.slider("Planned Retrofit Year", 2024, 2035, 2025)
+    submitted = st.form_submit_button("Evaluate Transition Plan")
 
-    if result["status"] == "success":
-        df = result["data"]
+if submitted:
+    try:
+        # Get capex cost from HVAC map
+        hvac_row = hvac_map.query("`Asset Class` == @asset_class and `Current System` == @current_system and `New System` == @new_system").iloc[0]
+        capex = hvac_row["CapEx (€)"]
+        carbon_saving = hvac_row["Annual Carbon Saving (kgCO2e)"]
+        energy_saving = hvac_row["Annual Energy Saving (kWh)"]
 
-        # Allow user to define retrofit year per asset
-        st.subheader("🛠️ Select Retrofit Year for Each Asset")
-        retrofit_years = {}
-        for asset in df["Asset Name"]:
-            retrofit_years[asset] = st.selectbox(
-                f"Retrofit year for {asset}",
-                options=list(range(2024, 2036)),
-                index=0,
-                key=f"year_{asset}"
-            )
+        # Get valuation uplift from ESG file
+        uplift_row = esg_val.query("Country == @country_code and `From EPC` == @current_epc and `To EPC` == @new_epc").iloc[0]
+        uplift_pct = uplift_row["Valuation Uplift (%)"]
+        uplift_value = asset_value * (uplift_pct / 100)
 
-        # Simulate emissions over time
-        years = list(range(2024, 2036))
-        emissions_by_year = {year: 0 for year in years}
+        # Summary
+        st.subheader("📊 Retrofit Summary")
+        col1, col2, col3 = st.columns(3)
+        col1.metric("CapEx Estimate", f"€{capex:,.0f}")
+        col2.metric("Valuation Uplift", f"€{uplift_value:,.0f} ({uplift_pct:.1f}%)")
+        col3.metric("Planned Year", retrofit_year)
 
-        for _, row in df.iterrows():
-            base_emission = row["Carbon Intensity (kgCO2e/m²)"] * row["Floor Area (m²)"]
-            reduction = 0.4  # 40% carbon cut after retrofit (placeholder)
-            asset_year = retrofit_years[row["Asset Name"]]
-            for year in years:
-                if year < asset_year:
-                    emissions_by_year[year] += base_emission
-                else:
-                    emissions_by_year[year] += base_emission * (1 - reduction)
+        st.subheader("📉 Impact Forecast")
+        st.markdown(f"- Estimated **Carbon Savings**: {carbon_saving:,.0f} kgCO₂e/year")
+        st.markdown(f"- Estimated **Energy Savings**: {energy_saving:,.0f} kWh/year")
 
-        emissions_series = pd.Series(emissions_by_year)
+        result_df = pd.DataFrame([{
+            "Asset Class": asset_class,
+            "Country": country_code,
+            "Current HVAC": current_system,
+            "New HVAC": new_system,
+            "Current EPC": current_epc,
+            "New EPC": new_epc,
+            "Asset Value (€)": asset_value,
+            "Valuation Uplift (€)": uplift_value,
+            "CapEx (€)": capex,
+            "Carbon Saving (kgCO2e)": carbon_saving,
+            "Energy Saving (kWh)": energy_saving,
+            "Retrofit Year": retrofit_year
+        }])
 
-        st.subheader("📉 Projected Portfolio Emissions (kgCO2e)")
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(x=emissions_series.index, y=emissions_series.values,
-                                 mode='lines+markers', name='Projected Emissions'))
-        fig.update_layout(xaxis_title="Year", yaxis_title="Total Emissions (kgCO2e)",
-                          title="Decarbonization Pathway")
-        st.plotly_chart(fig)
+        st.download_button("📥 Download Transition Plan CSV", result_df.to_csv(index=False), file_name="transition_plan_summary.csv")
 
-        # Export data
-        output_df = pd.DataFrame({
-            "Year": emissions_series.index,
-            "Total Emissions (kgCO2e)": emissions_series.values
-        })
-        st.download_button("Download Emissions Pathway CSV", output_df.to_csv(index=False),
-                           file_name="transition_plan_emissions.csv")
-
-    else:
-        st.error(result["message"])
+    except Exception as e:
+        st.error(f"Error: {e}")
