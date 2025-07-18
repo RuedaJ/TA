@@ -7,19 +7,19 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="💰 ROI & Carbon Payback Tool", layout="wide")
 st.title("💰 Retrofit ROI + Carbon Payback Calculator")
 
-# Load all necessary data
+# Load datasets
 try:
     retrofit_costs = pd.read_excel("data/Retrofit_Costs_CRREM_Compatible.xlsx")
-    utility_tariffs = pd.read_excel("data/Utility_Tariffs_CRREM_Compatible.xlsx")
     discount_rates = pd.read_excel("data/Discount_Rates_Risk_Premiums_CRREM_Compatible.xlsx")
     crrem_pathways = pd.read_csv("data/crrem_pathways.csv")
     crrem_assets = pd.read_csv("data/crrem_asset_classes.csv")
+    conversion_factors = pd.read_csv("data/crrem_conversion_factors.csv")
 except Exception as e:
-    st.error(f"Data loading error: {e}")
+    st.error(f"Error loading data: {e}")
     st.stop()
 
 with st.form("roi_inputs"):
-    st.subheader("📥 Retrofit Scenario Inputs")
+    st.subheader("📥 Retrofit Inputs")
 
     col1, col2, col3 = st.columns(3)
     asset_class = col1.selectbox("Asset Class (CRREM)", crrem_assets["asset_class"].dropna().unique())
@@ -27,34 +27,32 @@ with st.form("roi_inputs"):
     technology = col3.selectbox("Technology", retrofit_costs["Technology"].unique())
 
     col4, col5, col6 = st.columns(3)
-    country = col4.selectbox("Country", utility_tariffs["Country"].unique())
-    fuel_type = col5.selectbox("Fuel Type", utility_tariffs["Fuel Type"].unique())
+    country = col4.selectbox("Country", conversion_factors["country_code"].unique())
+    fuel_type = col5.selectbox("Fuel Type", conversion_factors["fuel_type"].unique())
     floor_area = col6.number_input("Floor Area (m²)", min_value=100, value=1000)
 
     kwh_before = st.number_input("Energy Use Before (kWh)", min_value=1000, value=100000)
     kwh_after = st.number_input("Energy Use After (kWh)", min_value=100, value=60000)
     year = st.slider("Start Year", 2024, 2035, value=2025)
 
-    use_tenant_split = st.checkbox("Apply tenant/landlord split?", value=True)
     user_discount_override = st.number_input("Override Discount Rate (%)", min_value=0.0, value=0.0)
 
     submitted = st.form_submit_button("Calculate ROI")
 
 if submitted:
     try:
-        # Lookup cost, tariff, discount
         capex_row = retrofit_costs.query("`Retrofit Category` == @retrofit_category and Technology == @technology").iloc[0]
-        tariff_row = utility_tariffs.query("Country == @country and `Fuel Type` == @fuel_type").iloc[0]
         discount_row = discount_rates.query("Country == @country").iloc[0]
+        factor_row = conversion_factors.query("fuel_type == @fuel_type and country_code == @country").iloc[0]
 
         capex = capex_row["Cost per m² (EUR)"] * floor_area
-        tariff = tariff_row["Landlord Tariff"] if use_tenant_split else tariff_row["Blended Tariff"]
         discount_rate = user_discount_override / 100 if user_discount_override > 0 else discount_row["Discount Rate"]
+        carbon_factor = factor_row["conversion_factor_kgco2_per_kwh"]
 
-        # ROI calculations
+        # ROI Logic
         savings_kwh = kwh_before - kwh_after
-        annual_savings = savings_kwh * tariff
-        emissions_saved = savings_kwh * tariff_row["Carbon Factor"]
+        annual_savings = savings_kwh * 0.20  # assume €0.20/kWh unless tariffs are defined
+        emissions_saved = savings_kwh * carbon_factor
 
         years = list(range(year, year + 10))
         savings_series = np.array([annual_savings / ((1 + discount_rate) ** (i - year)) for i in years])
@@ -63,19 +61,19 @@ if submitted:
         roi = (annual_savings * 10 - capex) / capex
         payback_years = capex / annual_savings if annual_savings else float('inf')
 
-        # CRREM comparison
+        # CRREM pathway
         try:
             pathway_row = crrem_pathways.query("asset_class == @asset_class and region_code == @country and year == @year").iloc[0]
             target_intensity = pathway_row["target_carbon_intensity_kgco2m2"]
-            intensity_after = kwh_after / floor_area * tariff_row["Carbon Factor"]
-            stranded = intensity_after > target_intensity
+            post_intensity = kwh_after / floor_area * carbon_factor
+            stranded = post_intensity > target_intensity
         except Exception as e:
             target_intensity = None
+            post_intensity = None
             stranded = None
-            crrem_error = str(e)
 
-        # Results Display
-        st.subheader("📊 Results")
+        # Outputs
+        st.subheader("📊 ROI Metrics")
         col1, col2, col3 = st.columns(3)
         col1.metric("NPV", f"€{npv:,.0f}")
         col2.metric("IRR", f"{irr*100:.1f}%" if not np.isnan(irr) else "N/A")
@@ -83,8 +81,7 @@ if submitted:
 
         st.markdown(f"**Estimated Emissions Reduction**: {emissions_saved:,.0f} kgCO₂e")
 
-        st.subheader("📈 Annual Cash Flow Projection")
-        import matplotlib.pyplot as plt
+        st.subheader("📈 Cash Flow Projection")
         fig, ax = plt.subplots()
         ax.bar(years, [annual_savings]*10, color="#184999")
         ax.axhline(0, color="black")
@@ -93,14 +90,14 @@ if submitted:
         ax.set_title("Cash Flow Projection")
         st.pyplot(fig)
 
-        if target_intensity:
+        if stranded is not None:
             st.subheader("📌 CRREM Pathway Check")
             if stranded:
-                st.error(f"🚨 Post-retrofit intensity ({intensity_after:.1f}) exceeds CRREM target ({target_intensity:.1f})")
+                st.error(f"🚨 Post-retrofit intensity ({post_intensity:.1f}) > CRREM target ({target_intensity:.1f})")
             else:
-                st.success(f"✅ Retrofit aligns with CRREM target ({target_intensity:.1f} kgCO₂/m²)")
+                st.success(f"✅ Retrofit is below CRREM target ({target_intensity:.1f} kgCO₂/m²)")
 
-        st.download_button("📥 Download Cash Flow CSV", pd.DataFrame({
+        st.download_button("📥 Download ROI Table", pd.DataFrame({
             "Year": years,
             "Discounted Savings (€)": savings_series
         }).to_csv(index=False), file_name="roi_cash_flow.csv")
