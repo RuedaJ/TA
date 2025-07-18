@@ -1,0 +1,5 @@
+parameter,default_value,description,scenario_preset
+discount_rate,0.05,Discount rate used in NPV calculations,moderate
+asset_lifetime,30.0,Expected technical lifetime of the asset in years,moderate
+retrofit_cost_per_m2,250.0,Average retrofit cost per m²,moderate
+payback_years_threshold,10.0,Maximum acceptable payback period in years,moderate

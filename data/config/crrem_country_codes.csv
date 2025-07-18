@@ -1,0 +1,65 @@
+Code,Country_Name,Is_Subregion,Data_Available
+AT,Austria,False,True
+BE,Belgium,False,True
+BG,Bulgaria,False,True
+HR,Croatia,False,True
+CY,Cyprus,False,True
+CZ,Czech Republic,False,True
+DK,Denmark,False,True
+EE,Estonia,False,True
+FI,Finland,False,True
+FR,France,False,True
+DE,Germany,False,True
+GR,Greece,False,True
+HU,Hungary,False,True
+IE,Ireland,False,True
+IT,Italy,False,True
+LV,Latvia,False,True
+LT,Lithuania,False,True
+LU,Luxembourg,False,True
+MT,Malta,False,True
+NL,Netherlands,False,True
+PL,Poland,False,True
+PT,Portugal,False,True
+RO,Romania,False,True
+SK,Slovakia,False,True
+SI,Slovenia,False,True
+ES,Spain,False,True
+SE,Sweden,False,True
+UK,United Kingdom,False,True
+EU27,European Union (27),False,True
+AUS1,Australia Region 1,True,True
+AUS2,Australia Region 2,True,True
+AUS3,Australia Region 3,True,True
+AUS4,Australia Region 4,True,True
+AUS5,Australia Region 5,True,True
+AUS6,Australia Region 6,True,True
+AUS7,Australia Region 7,True,True
+USA,United States,False,True
+CAN,Canada,False,True
+CHN,China,False,True
+IND,India,False,True
+IDN,Indonesia,False,True
+JPN,Japan,False,True
+KOR,South Korea,False,True
+MEX,Mexico,False,True
+RUS,Russia,False,True
+ZAF,South Africa,False,True
+TUR,Turkey,False,True
+BRA,Brazil,False,True
+ARG,Argentina,False,True
+CHL,Chile,False,True
+COL,Colombia,False,True
+PER,Peru,False,True
+SAU,Saudi Arabia,False,True
+ARE,United Arab Emirates,False,True
+ISR,Israel,False,True
+SGP,Singapore,False,True
+THA,Thailand,False,True
+VNM,Vietnam,False,True
+PHL,Philippines,False,True
+EGY,Egypt,False,True
+MAR,Morocco,False,True
+NGA,Nigeria,False,True
+KEN,Kenya,False,True
+GHA,Ghana,False,True
