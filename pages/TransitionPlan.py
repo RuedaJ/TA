@@ -37,7 +37,7 @@ if submitted:
         energy_saving = carbon_saving * 0.25  # assume 0.25 kgCO₂ per kWh for now
 
         # EPC uplift
-        uplift_row = esg_val.query("Country == @country and `From EPC` == @current_epc and `To EPC` == @new_epc").iloc[0]
+        uplift_row = esg_val[(esg_val["Country"] == country) & (esg_val["From EPC"] == current_epc) & (esg_val["To EPC"] == new_epc)].iloc[0]
         uplift_pct = uplift_row["Valuation Uplift (%)"]
         uplift_value = asset_value * (uplift_pct / 100)
 
