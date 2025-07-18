@@ -1,0 +1,10 @@
+{
+  "asset_id": "DE-001",
+  "retrofit": "HVAC Upgrade",
+  "capex": 100000,
+  "energy_savings_kwh": 40000,
+  "carbon_savings_tons": 10.2,
+  "payback_years": 5.4,
+  "npv_eur": 23000,
+  "irr": 0.12
+}
