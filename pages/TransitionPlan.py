@@ -44,11 +44,39 @@ with st.form("transition_form"):
     current_intensity = st.number_input("Current Carbon Intensity (kgCO₂/m²)", min_value=10.0, value=85.0)
     asset_value = st.number_input("Current Asset Value (€)", min_value=1_000_000, value=25_000_000)
 
+    
+    auto_epc = st.checkbox("🔍 Auto-infer Current EPC from intensity?", value=True)
+
     submitted = st.form_submit_button("📊 Generate Plan")
+
 
 if submitted:
     try:
-        # EPC uplift lookup
+        
+    # Auto-infer EPC if requested
+    inferred_epc = None
+    if auto_epc:
+        try:
+            epc_baselines = pd.read_excel("data/Energy_Performance_Baselines_CRREM_Compatible.xlsx")
+            baseline_row = epc_baselines[
+                (epc_baselines["country_code"] == country) &
+                (epc_baselines["asset_class"] == asset_class)
+            ].iloc[0]
+            carbon_intensity = current_intensity
+            for epc_band in ["A", "B", "C", "D", "E", "F", "G"]:
+                if carbon_intensity <= baseline_row[f"{epc_band}_max"]:
+                    inferred_epc = epc_band
+                    break
+            if inferred_epc:
+                current_epc = inferred_epc
+                st.info(f"📡 Auto-inferred Current EPC: **{inferred_epc}**")
+            else:
+                st.warning("⚠️ Could not infer EPC from carbon intensity.")
+        except Exception as e:
+            st.warning(f"Auto-inference failed: {e}")
+
+    # EPC uplift lookup
+
         uplift_row = esg_uplift[
             (esg_uplift["Country"] == country) &
             (esg_uplift["From EPC"] == current_epc) &
