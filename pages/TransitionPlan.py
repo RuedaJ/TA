@@ -9,9 +9,9 @@ st.title("📆 ESG Transition Plan (with EPC Inference)")
 try:
     archetypes = pd.read_excel("data/Building_Archetypes_CRREM_Compatible.xlsx")
     retrofit_costs = pd.read_excel("data/Retrofit_Costs_CRREM_Compatible.xlsx")
-    esg_uplift = pd.read_excel("data/ESG_Valuation_Impacts_CRREM_Compatible.xlsx")
+    esg_uplift = pd.read_excel("data/ESG_Valuation_Impacts_CRREM_TEMPLATE.xlsx")
     crrem_pathways = pd.read_csv("data/crrem_pathways.csv")
-    epc_baselines = pd.read_excel("data/Energy_Performance_Baselines_CRREM_Compatible.xlsx")
+    epc_baselines = pd.read_excel("data/Energy_Performance_Baselines_CRREM_ALL_COUNTRIES.xlsx")
 except Exception as e:
     st.error(f"❌ Data load error: {e}")
     st.stop()
