@@ -55,10 +55,13 @@ if submitted:
         # Auto-infer EPC from intensity if selected
         if auto_epc:
             try:
-                baseline_row = epc_baselines[
+                baseline_match = epc_baselines[
                     (epc_baselines["country_code"] == country) &
                     (epc_baselines["asset_class"] == asset_class)
-                ].iloc[0]
+                ]
+            if baseline_match.empty:
+                raise ValueError('EPC baseline lookup failed')
+            baseline_row = baseline_match.iloc[0]
                 current_epc = None
                 for epc_band in ["A", "B", "C", "D", "E", "F", "G"]:
                     if current_intensity <= baseline_row[f"{epc_band}_max"]:
@@ -76,11 +79,14 @@ if submitted:
             current_epc = manual_epc
 
         # Compute uplift
-        uplift_row = esg_uplift[
+        uplift_match = esg_uplift[
             (esg_uplift["Country"] == country) &
             (esg_uplift["From EPC"] == current_epc) &
             (esg_uplift["To EPC"] == target_epc)
-        ].iloc[0]
+        ]
+            if baseline_match.empty:
+                raise ValueError('EPC baseline lookup failed')
+            baseline_row = baseline_match.iloc[0]
         uplift_pct = uplift_row["Valuation Uplift (%)"]
         uplift_value = asset_value * uplift_pct / 100
 
